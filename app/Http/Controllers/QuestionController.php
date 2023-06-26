@@ -19,7 +19,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('questions.create');
     }
 
     /**
@@ -27,7 +27,9 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate the form data
+
+        // process the data and submit it
     }
 
     /**
