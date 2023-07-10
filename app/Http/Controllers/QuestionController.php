@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Question;
 
 class QuestionController extends Controller
 {
@@ -11,7 +12,11 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        //fetch all records
+        $questions = Question::all();
+
+        //return the view and pass in the records fetched above
+        return view('questions.index')->with('questions', $questions);
     }
 
     /**
@@ -28,8 +33,21 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         // validate the form data
+        $this->validate($request, [
+            'title' => 'required | max:255', // 255 in order to be compatible with the db varchar type
+        ]);
 
         // process the data and submit it
+        $question = new Question();
+        $question->title = $request->title;
+        $question->description = $request->description;
+
+        //redirect to show page if successful
+        if($question->save()){
+            return redirect()->route('questions.show', $question->id);
+        }else{
+            return redirect()->route('questions.create');
+        }
     }
 
     /**
@@ -37,7 +55,10 @@ class QuestionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // use model to get one record from db
+        $question = Question::findOrFail($id);
+        return view('questions.show')->with('question',$question);
+        // pass the record to view and show view
     }
 
     /**
