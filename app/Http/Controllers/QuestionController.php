@@ -13,7 +13,7 @@ class QuestionController extends Controller
     public function index()
     {
         //fetch all records
-        $questions = Question::all();
+        $questions = Question::orderBy('id', 'desc')->paginate(5);
 
         //return the view and pass in the records fetched above
         return view('questions.index')->with('questions', $questions);

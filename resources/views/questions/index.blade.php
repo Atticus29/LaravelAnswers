@@ -12,4 +12,6 @@
             <a href="{{ route('questions.show', $question->id) }}" class="btn btn-primary small">View Details</a>
         </div>
     @endforeach
+
+    {{$questions->links()}}
 </div>
