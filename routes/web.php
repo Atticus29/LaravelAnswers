@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\AnswersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,4 @@ Route::get('/', function () {
 });
 Route::get('/about', [PageController::class, 'about']);
 Route::resource('/questions', QuestionController::class);
+Route::resource('/answers', AnswersController::class, ['except' => ['index', 'create', 'show']]);

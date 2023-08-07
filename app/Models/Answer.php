@@ -10,6 +10,6 @@ class Answer extends Model
     use HasFactory;
 
     public function question(){
-        return $this->belongsTo('App\Question');
+        return $this->belongsTo('App\Models\Question');
     }
 }

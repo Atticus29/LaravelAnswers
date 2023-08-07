@@ -10,6 +10,6 @@ class Question extends Model
     use HasFactory;
 
     public function answers(){
-        return $this->hasMany('App\Answer');
+        return $this->hasMany('App\Models\Answer');
     }
 }
